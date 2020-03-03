@@ -1,6 +1,7 @@
 package com.ticketoffice.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ROUTES")
@@ -35,7 +36,7 @@ public class Routes {
         return id;
     }
 
-    public void setIdRoutes(int idRoutes) {
+    public void setIdRoutes(int id) {
         this.id = id;
     }
 
@@ -62,9 +63,9 @@ public class Routes {
 
         Routes routes = (Routes) o;
 
-        if (id != null ? !id.equals(routes.id) : routes.id != null) return false;
-        if (departure != null ? !departure.equals(routes.departure) : routes.departure != null) return false;
-        return arrival != null ? arrival.equals(routes.arrival) : routes.arrival == null;
+        if (!Objects.equals(id, routes.id)) return false;
+        if (!Objects.equals(departure, routes.departure)) return false;
+        return Objects.equals(arrival, routes.arrival);
     }
 
     @Override

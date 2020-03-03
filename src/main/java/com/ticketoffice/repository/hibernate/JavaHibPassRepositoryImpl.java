@@ -11,10 +11,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JavaHibPassRepositoryImpl implements PassengerRepository {
-    private SessionUtil sessionUtil = new SessionUtil();
+    private final SessionUtil sessionUtil = new SessionUtil();
 
     @Override
-    public void create(Passenger passenger) throws Exception {
+    public void create(Passenger passenger) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.save(passenger);
@@ -22,7 +22,7 @@ public class JavaHibPassRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public void update(Passenger passenger) throws Exception {
+    public void update(Passenger passenger) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.update(passenger);
@@ -30,7 +30,7 @@ public class JavaHibPassRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public void delete(Passenger passenger) throws SQLException, ClassNotFoundException, InterruptedException, IOException {
+    public void delete(Passenger passenger) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.remove(passenger);
@@ -38,22 +38,22 @@ public class JavaHibPassRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public List<Passenger> getAll() throws IOException, SQLException, ClassNotFoundException, InterruptedException {
+    public List<Passenger> getAll() {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM PASSENGER";
+        String hql = "SELECT * FROM Passenger";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Passenger.class);
+        Query query = session.createNativeQuery(hql).addEntity(Passenger.class);
         List<Passenger> passengersList = query.list();
         sessionUtil.closeTransactionSession();
         return passengersList;
     }
 
     @Override
-    public Passenger getId(Integer id) throws Exception {
+    public Passenger getId(Integer id) {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM PASSENGER WHERE ID = :id";
+        String hql = "SELECT * FROM Passenger WHERE id = :id";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Passenger.class);
+        Query query = session.createNativeQuery(hql).addEntity(Passenger.class);
         query.setParameter("id", id);
         Passenger passenger = (Passenger) query.getSingleResult();
         sessionUtil.closeTransactionSession();

@@ -11,10 +11,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JavaHibPlaneRepositoryImpl implements PlaneRepository {
-    private SessionUtil sessionUtil = new SessionUtil();
+    private final SessionUtil sessionUtil = new SessionUtil();
 
     @Override
-    public void create(Plane plane) throws Exception {
+    public void create(Plane plane) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.save(plane);
@@ -22,7 +22,7 @@ public class JavaHibPlaneRepositoryImpl implements PlaneRepository {
     }
 
     @Override
-    public void update(Plane plane) throws Exception {
+    public void update(Plane plane) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.update(plane);
@@ -30,7 +30,7 @@ public class JavaHibPlaneRepositoryImpl implements PlaneRepository {
     }
 
     @Override
-    public void delete(Plane plane) throws SQLException, ClassNotFoundException, InterruptedException, IOException {
+    public void delete(Plane plane) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.remove(plane);
@@ -38,22 +38,22 @@ public class JavaHibPlaneRepositoryImpl implements PlaneRepository {
     }
 
     @Override
-    public List<Plane> getAll() throws IOException, SQLException, ClassNotFoundException, InterruptedException {
+    public List<Plane> getAll() {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM PLANE";
+        String hql = "SELECT * FROM Plane";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Plane.class);
+        Query query = session.createNativeQuery(hql).addEntity(Plane.class);
         List<Plane> planeList = query.list();
         sessionUtil.closeTransactionSession();
         return planeList;
     }
 
     @Override
-    public Plane getId(Integer id) throws Exception {
+    public Plane getId(Integer id) {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM PLANE WHERE ID = :id";
+        String hql = "SELECT * FROM Plane WHERE id = :id";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Plane.class);
+        Query query = session.createNativeQuery(hql).addEntity(Plane.class);
         query.setParameter("id", id);
         Plane plane = (Plane) query.getSingleResult();
         sessionUtil.closeTransactionSession();

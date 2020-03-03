@@ -1,6 +1,7 @@
 package com.ticketoffice.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PLANE")
@@ -30,7 +31,7 @@ public class Plane {
         return id;
     }
 
-    public void setIdPlane(int idPlane) {
+    public void setIdPlane(int id) {
         this.id = id;
     }
 
@@ -49,8 +50,8 @@ public class Plane {
 
         Plane plane = (Plane) o;
 
-        if (id != null ? !id.equals(plane.id) : plane.id != null) return false;
-        return name != null ? name.equals(plane.name) : plane.name == null;
+        if (!Objects.equals(id, plane.id)) return false;
+        return Objects.equals(name, plane.name);
     }
 
     @Override

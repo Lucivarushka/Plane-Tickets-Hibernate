@@ -15,7 +15,7 @@ public class SessionUtil {
         return transaction;
     }
 
-    public Session openSession() {
+    private Session openSession() {
         return SessionFactoryUtil.getSessionFactory().openSession();
     }
 
@@ -25,7 +25,7 @@ public class SessionUtil {
         return session;
     }
 
-    public void closeSession() {
+    private void closeSession() {
         session.close();
     }
 

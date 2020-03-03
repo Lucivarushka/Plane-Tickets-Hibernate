@@ -5,7 +5,7 @@ import com.ticketoffice.model.Plane;
 
 import java.util.Scanner;
 
-public class PlaneView {
+class PlaneView {
     public static final String ACTIONS_PLANE = "Введите действие:\n" +
             "1.Зарегистрировать новый самолет\n" +
             "2.Изменить самолет\n" +
@@ -13,7 +13,7 @@ public class PlaneView {
             "4.Получить информацию о самолете по айди\n" +
             "5.Список всех самолетов\n";
 
-    PlaneController planeController = new PlaneController();
+    private final PlaneController planeController = new PlaneController();
 
     public void createPlane() throws Exception {
         Scanner scanner = new Scanner(System.in);

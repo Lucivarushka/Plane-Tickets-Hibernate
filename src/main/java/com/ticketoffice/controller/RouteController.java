@@ -7,7 +7,7 @@ import com.ticketoffice.repository.hibernate.JavaHibRoutesRepositoryImpl;
 import java.util.List;
 
 public class RouteController {
-    RoutesRepository routesRepository = new JavaHibRoutesRepositoryImpl();
+    private final RoutesRepository routesRepository = new JavaHibRoutesRepositoryImpl();
 
     public void createRoute(Routes routes) throws Exception {
         routesRepository.create(routes);

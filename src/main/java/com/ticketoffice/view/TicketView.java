@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
-public class TicketView {
+class TicketView {
     public static final String ACTIONS_ROUTE = "Введите действие:\n" +
             "1.Создать новый билет\n" +
             "2.Изменить билет\n" +
@@ -20,10 +20,10 @@ public class TicketView {
             "5.Найти билет по айди пассажира\n" +
             "6.Список всех билетов\n";
 
-    TicketController ticketController = new TicketController();
-    PassController passController = new PassController();
-    PlaneController planeController = new PlaneController();
-    RouteController routeController = new RouteController();
+    private final TicketController ticketController = new TicketController();
+    private final PassController passController = new PassController();
+    private final PlaneController planeController = new PlaneController();
+    private final RouteController routeController = new RouteController();
 
     public void createTicket() throws Exception {
         Scanner scanner = new Scanner(System.in);

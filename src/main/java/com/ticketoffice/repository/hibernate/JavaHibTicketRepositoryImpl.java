@@ -11,12 +11,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JavaHibTicketRepositoryImpl implements TicketRepository {
-    private SessionUtil sessionUtil = new SessionUtil();
+    private final SessionUtil sessionUtil = new SessionUtil();
 
     //   private static final String SELECT_BY_ID_PASS = SELECT_ALL + " where id_passenger = ?";
 
     @Override
-    public void create(Ticket ticket) throws Exception {
+    public void create(Ticket ticket) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.save(ticket);
@@ -24,7 +24,7 @@ public class JavaHibTicketRepositoryImpl implements TicketRepository {
     }
 
     @Override
-    public void update(Ticket ticket) throws Exception {
+    public void update(Ticket ticket) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.update(ticket);
@@ -32,7 +32,7 @@ public class JavaHibTicketRepositoryImpl implements TicketRepository {
     }
 
     @Override
-    public void delete(Ticket ticket) throws SQLException, ClassNotFoundException, InterruptedException, IOException {
+    public void delete(Ticket ticket) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.remove(ticket);
@@ -40,22 +40,22 @@ public class JavaHibTicketRepositoryImpl implements TicketRepository {
     }
 
     @Override
-    public List<Ticket> getAll() throws IOException, SQLException, ClassNotFoundException, InterruptedException {
+    public List<Ticket> getAll() {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM TICKET";
+        String hql = "SELECT * FROM Ticket";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Ticket.class);
+        Query query = session.createNativeQuery(hql).addEntity(Ticket.class);
         List<Ticket> ticketsList = query.list();
         sessionUtil.closeTransactionSession();
         return ticketsList;
     }
 
     @Override
-    public Ticket getId(Integer id) throws Exception {
+    public Ticket getId(Integer id) {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM TICKET WHERE ID = :id";
+        String hql = "SELECT * FROM Ticket WHERE id = :id";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Ticket.class);
+        Query query = session.createNativeQuery(hql).addEntity(Ticket.class);
         query.setParameter("id", id);
         Ticket ticket = (Ticket) query.getSingleResult();
         sessionUtil.closeTransactionSession();
@@ -63,11 +63,11 @@ public class JavaHibTicketRepositoryImpl implements TicketRepository {
     }
 
     @Override
-    public List<Ticket> getIdTicketPass(Integer id) throws SQLException, ClassNotFoundException, InterruptedException, IOException {
+    public List<Ticket> getIdTicketPass(Integer id) {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM TICKET WHERE passenger_ID = :id";
+        String hql = "SELECT * FROM Ticket WHERE passenger = :id";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Ticket.class);
+        Query query = session.createNativeQuery(hql).addEntity(Ticket.class);
         query.setParameter("id", id);
         List<Ticket> ticketsList = query.list();
         sessionUtil.closeTransactionSession();

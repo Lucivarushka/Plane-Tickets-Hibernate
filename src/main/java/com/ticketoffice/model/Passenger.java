@@ -2,6 +2,7 @@ package com.ticketoffice.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -88,10 +89,10 @@ public class Passenger {
 
         Passenger passenger = (Passenger) o;
 
-        if (id != null ? !id.equals(passenger.id) : passenger.id != null) return false;
-        if (name != null ? !name.equals(passenger.name) : passenger.name != null) return false;
-        if (surname != null ? !surname.equals(passenger.surname) : passenger.surname != null) return false;
-        return birthdate != null ? birthdate.equals(passenger.birthdate) : passenger.birthdate == null;
+        if (!Objects.equals(id, passenger.id)) return false;
+        if (!Objects.equals(name, passenger.name)) return false;
+        if (!Objects.equals(surname, passenger.surname)) return false;
+        return Objects.equals(birthdate, passenger.birthdate);
     }
 
     @Override

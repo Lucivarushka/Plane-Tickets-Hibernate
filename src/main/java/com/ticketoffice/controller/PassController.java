@@ -7,7 +7,7 @@ import com.ticketoffice.repository.hibernate.JavaHibPassRepositoryImpl;
 import java.util.List;
 
 public class PassController {
-    PassengerRepository passengerRepository = new JavaHibPassRepositoryImpl();
+    private final PassengerRepository passengerRepository = new JavaHibPassRepositoryImpl();
 
     public void createPass(Passenger passenger) throws Exception {
         passengerRepository.create(passenger);

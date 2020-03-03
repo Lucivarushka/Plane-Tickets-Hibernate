@@ -7,7 +7,7 @@ import com.ticketoffice.repository.hibernate.JavaHibPlaneRepositoryImpl;
 import java.util.List;
 
 public class PlaneController {
-    PlaneRepository planeRepository = new JavaHibPlaneRepositoryImpl();
+    private final PlaneRepository planeRepository = new JavaHibPlaneRepositoryImpl();
 
     public void createPlane(Plane plane) throws Exception {
         planeRepository.create(plane);

@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-public class PassengerView {
+class PassengerView {
     public static final String ACTIONS_PASS = "Введите действие:\n" +
             "1.Зарегистрировать нового пассажира\n" +
             "2.Изменить пассажира\n" +
@@ -15,7 +15,7 @@ public class PassengerView {
             "4.Получить информацию о пассажире по айди\n" +
             "5.Список всех пассажиров\n";
 
-    PassController passController = new PassController();
+    private final PassController passController = new PassController();
 
     public void createPass() throws Exception {
         Scanner scanner = new Scanner(System.in);

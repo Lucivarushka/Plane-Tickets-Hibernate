@@ -7,7 +7,7 @@ import com.ticketoffice.repository.hibernate.JavaHibTicketRepositoryImpl;
 import java.util.List;
 
 public class TicketController {
-    TicketRepository ticketRepository = new JavaHibTicketRepositoryImpl();
+    private final TicketRepository ticketRepository = new JavaHibTicketRepositoryImpl();
 
     public void createTicket(Ticket ticket) throws Exception {
         ticketRepository.create(ticket);

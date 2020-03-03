@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface TicketRepository extends GenericRepository<Ticket, Integer> {
 
-    List<Ticket> getIdTicketPass(Integer id) throws SQLException, ClassNotFoundException, InterruptedException, IOException;
+    List<Ticket> getIdTicketPass(Integer id);
 
 }

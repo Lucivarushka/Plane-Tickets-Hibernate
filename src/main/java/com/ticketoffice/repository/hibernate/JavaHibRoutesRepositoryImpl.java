@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JavaHibRoutesRepositoryImpl implements RoutesRepository {
-    private SessionUtil sessionUtil = new SessionUtil();
+    private final SessionUtil sessionUtil = new SessionUtil();
 
 
     @Override
-    public void create(Routes routes) throws Exception {
+    public void create(Routes routes) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.save(routes);
@@ -23,7 +23,7 @@ public class JavaHibRoutesRepositoryImpl implements RoutesRepository {
     }
 
     @Override
-    public void update(Routes routes) throws Exception {
+    public void update(Routes routes) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.update(routes);
@@ -31,7 +31,7 @@ public class JavaHibRoutesRepositoryImpl implements RoutesRepository {
     }
 
     @Override
-    public void delete(Routes routes) throws SQLException, ClassNotFoundException, InterruptedException, IOException {
+    public void delete(Routes routes) {
         sessionUtil.openTransactionSession();
         Session session = sessionUtil.getSession();
         session.remove(routes);
@@ -39,22 +39,22 @@ public class JavaHibRoutesRepositoryImpl implements RoutesRepository {
     }
 
     @Override
-    public List<Routes> getAll() throws IOException, SQLException, ClassNotFoundException, InterruptedException {
+    public List<Routes> getAll() {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM ROUTES";
+        String hql = "SELECT * FROM Routes";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Routes.class);
+        Query query = session.createNativeQuery(hql).addEntity(Routes.class);
         List<Routes> routesList = query.list();
         sessionUtil.closeTransactionSession();
         return routesList;
     }
 
     @Override
-    public Routes getId(Integer id) throws Exception {
+    public Routes getId(Integer id) {
         sessionUtil.openTransactionSession();
-        String sql = "SELECT * FROM ROUTES WHERE ID = :id";
+        String hql = "SELECT * FROM Routes WHERE id = :id";
         Session session = sessionUtil.getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Routes.class);
+        Query query = session.createNativeQuery(hql).addEntity(Routes.class);
         query.setParameter("id", id);
         Routes routes = (Routes) query.getSingleResult();
         sessionUtil.closeTransactionSession();

@@ -5,7 +5,7 @@ import com.ticketoffice.model.Routes;
 
 import java.util.Scanner;
 
-public class RoutesView {
+class RoutesView {
     public static final String ACTIONS_ROUTE = "Введите действие:\n" +
             "1.Зарегистрировать новый маршрут\n" +
             "2.Изменить маршрут\n" +
@@ -13,7 +13,7 @@ public class RoutesView {
             "4.Получить информацию о маршруте по айди\n" +
             "5.Список всех маршрутов\n";
 
-    RouteController routeController = new RouteController();
+    private final RouteController routeController = new RouteController();
 
     public void createRouter() throws Exception {
         Scanner scanner = new Scanner(System.in);

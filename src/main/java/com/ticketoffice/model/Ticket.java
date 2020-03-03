@@ -2,6 +2,7 @@ package com.ticketoffice.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "TICKET")
@@ -43,7 +44,7 @@ public class Ticket {
         this.routes = routes;
     }
 
-    public Ticket(Date date, TypeSeat type, int price, Plane plane, Passenger passenger, Routes routes) {
+    public Ticket(Date date, TypeSeat typeSeat, int price, Plane plane, Passenger passenger, Routes routes) {
         this.date = date;
         this.typeSeat = typeSeat;
         this.price = price;
@@ -116,12 +117,12 @@ public class Ticket {
         Ticket ticket = (Ticket) o;
 
         if (price != ticket.price) return false;
-        if (id != null ? !id.equals(ticket.id) : ticket.id != null) return false;
-        if (date != null ? !date.equals(ticket.date) : ticket.date != null) return false;
+        if (!Objects.equals(id, ticket.id)) return false;
+        if (!Objects.equals(date, ticket.date)) return false;
         if (typeSeat != ticket.typeSeat) return false;
-        if (plane != null ? !plane.equals(ticket.plane) : ticket.plane != null) return false;
-        if (passenger != null ? !passenger.equals(ticket.passenger) : ticket.passenger != null) return false;
-        return routes != null ? routes.equals(ticket.routes) : ticket.routes == null;
+        if (!Objects.equals(plane, ticket.plane)) return false;
+        if (!Objects.equals(passenger, ticket.passenger)) return false;
+        return Objects.equals(routes, ticket.routes);
     }
 
     @Override
